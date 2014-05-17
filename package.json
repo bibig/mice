@@ -1,0 +1,19 @@
+{
+  "name": "mice",
+  "version": "0.0.1",
+  "description": "fake data generator, 支持汉字",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -w"
+  },
+  "keywords": [
+    "fake",
+    "mice"
+  ],
+  "devDependencies": {
+    "should": "*",
+    "mocha": "*"
+  },
+  "author": "bibig@me.com",
+  "license": "MIT"
+}
