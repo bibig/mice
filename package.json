@@ -1,6 +1,6 @@
 {
   "name": "mice",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "fake data generator, 支持汉字",
   "main": "index.js",
   "scripts": {

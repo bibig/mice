@@ -5,4 +5,3 @@ function create (lang) {
 
   return require('./libs/' + lang);
 }
-

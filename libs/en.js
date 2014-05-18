@@ -49,14 +49,38 @@ var words_list = [
   'maiores', 'doloribus', 'asperiores', 'repellat'
 ];
 
-function first_letter_up (string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+/**
+ * make first letter of a string uppercase
+ * 
+ * @author bibig@me.com
+ * @update [2014-05-18 10:13:05]
+ * @param  {string} s 
+ * @return {string}
+ */
+function first_letter_up (s) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+/**
+ * randomly return a word from word list
+ * 
+ * @author bibig@me.com
+ * @update [2014-05-18 10:14:13]
+ * @return {string}
+ */
 function word () {
   return words_list[utils.pickup(words_list.length) - 1];
 }
 
+/**
+ * make a multiple words
+ * 
+ * @author bibig@me.com
+ * @update [2014-05-18 10:14:54]
+ * @param  {int} n, words count
+ * @param  {string or array} glue
+ * @return {string}
+ */
 function words (n, glue) {
   var arr = [];
   var puncs = {
@@ -80,7 +104,15 @@ function words (n, glue) {
   return str;
 }
 
-function sentence () {
+/**
+ * make a sentence
+ * 
+ * @author bibig@me.com
+ * @update [2014-05-18 10:15:52]
+ * @param  {int} n, included words count
+ * @return {string}
+ */
+function sentence (n) {
   var endPuncs = {
     10: [';', '?', '!', '...'],
     100: '.'
@@ -91,18 +123,28 @@ function sentence () {
     100: ', '
   };
 
-  var num = utils.pickup(4);
+  
   var members = [];
+  n = n || utils.pickup(4);
 
   do {
     members.push(words(utils.between(2, 15)));
-  } while (--num > 0);
+  } while (--n > 0);
 
   // console.log(members);
 
   return first_letter_up(members.join(utils.pickup_by_probability(glues))) + utils.pickup_by_probability(endPuncs);
 }
 
+/**
+ * make multiple sentences
+ * 
+ * @author bibig@me.com
+ * @update [2014-05-18 10:18:07]
+ * @param  {int} n, sentences count
+ * @param  {string or array} glue
+ * @return {string}
+ */
 function sentences (n, glue) {
   var arr = [];
   n = n || 2;
@@ -114,10 +156,28 @@ function sentences (n, glue) {
   return utils.join(arr, glue);
 }
 
-function paragraph () {
-  return sentences(utils.between(3, 10));
+/**
+ * make a paragraph
+ * 
+ * @author bibig@me.com
+ * @update [2014-05-18 10:19:04]
+ * @param  {int} n
+ * @param  {string or array} glue
+ * @return {string}
+ */
+function paragraph (n, glue) {
+  return sentences(n || utils.between(3, 10), glue || ' ');
 }
 
+/**
+ * make multiple paragraphs
+ * 
+ * @author bibig@me.com
+ * @update [2014-05-18 10:19:45]
+ * @param  {int} n
+ * @param  {string or array} glue
+ * @return {string}
+ */
 function paragraphs (n, glue) {
   var arr = [];
   n = n || 2;
