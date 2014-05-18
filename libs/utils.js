@@ -1,39 +1,7 @@
-exports.between               = between;
-exports.pickup                = pickup;
 exports.pickup_by_probability = pickup_by_probability;
 exports.join                  = join;
 
-/**
- * [between]
- * return a number between the given range
- * 
- * @author bibig@me.com
- * @update [2014-05-18 09:38:14]
- * @param  {int} min
- * @param  {int} max
- * @return {int}
- */
-function between (min, max) {
-  return min + pickup(max - min);
-}
-
-
-/**
- * [pickup]
- * return a number not greater than the limit
- * 
- * @author bibig@me.com
- * @update [2014-05-18 09:39:35]
- * @param  {int} v [the limit or the max]
- * @return {int}
- */
-function pickup (v) {
-  if (typeof v === 'number') {
-    return Math.ceil( Math.random() * v);
-  } else {
-    return pickup_by_probability(v);
-  }
-}
+var rander = require('rander');
 
 /**
  * [pickup_by_probability]
@@ -59,7 +27,7 @@ function pickup_by_probability (obj) {
 
   if ( typeof obj !== 'object') { return null; }
 
-  pos = pickup(100);
+  pos = rander.dice(100);
   keys = Object.keys(obj);
 
   for (i = 0; i < keys.length; i++) {
@@ -67,14 +35,14 @@ function pickup_by_probability (obj) {
       v = obj[keys[i]];
 
       if (Array.isArray(v)) {
-        return v[pickup(v.length) -1];
+        return v[rander.dice(v.length - 1)];
       } else {
         return v;
       }
 
     }
   }
-  throw new Error('cannot find value of pos: ' + pos);
+  throw new Error('wrong probability argument');
 }
 
 /**

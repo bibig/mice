@@ -11,12 +11,12 @@ npm install mice
 
   // 生成词语
   mice.word();  // 单个词语
-  mice.words(10, '-'); // 10个词语， 并用分隔符连接
+  mice.words(10, '-'); // 10个词语， 并用分隔符‘－’连接
 
 
   // 句子
   mice.sentence(); // 单个句子
-  mice.sentences(5, '<br>'); // 多个句子，并用分隔符<br>连接
+  mice.sentences(5, '<br>'); // 多个句子，并用分隔符‘<br>’连接
   mice.sentences(5, ['<p>', '</p>']); // 用首尾型tag连接
 
   // 段落
@@ -24,7 +24,7 @@ npm install mice
   mice.paragraphs(5, '<br>'); // 多个段落，分隔符使用同上
 
 
-  // 汉字，英语接口一样。
+  // 英语接口与汉字一样。
 
 ```
 

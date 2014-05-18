@@ -8,6 +8,7 @@ exports.sentences  = sentences;
 exports.paragraph  = paragraph;
 exports.paragraphs = paragraphs;
 
+var rander = require('rander');
 var utils = require('./utils');
 var words_list = [
   'alias', 'consequatur', 'aut', 'perferendis', 'sit', 'voluptatem',
@@ -69,7 +70,7 @@ function first_letter_up (s) {
  * @return {string}
  */
 function word () {
-  return words_list[utils.pickup(words_list.length) - 1];
+  return words_list[rander.dice(words_list.length -1)];
 }
 
 /**
@@ -125,10 +126,10 @@ function sentence (n) {
 
   
   var members = [];
-  n = n || utils.pickup(4);
+  n = n || rander.between(1, 4);
 
   do {
-    members.push(words(utils.between(2, 15)));
+    members.push(words(rander.between(2, 15)));
   } while (--n > 0);
 
   // console.log(members);
@@ -166,7 +167,7 @@ function sentences (n, glue) {
  * @return {string}
  */
 function paragraph (n, glue) {
-  return sentences(n || utils.between(3, 10), glue || ' ');
+  return sentences(n || rander.between(3, 10), glue || ' ');
 }
 
 /**

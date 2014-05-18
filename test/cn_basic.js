@@ -30,8 +30,8 @@ describe('base test', function () {
 
     console.log(s);
     should(s.length > 0).be.ok;
-    should(s.substring(0, 3)).eql('<p>');
-    should(s.substring(s.length - 4)).eql('</p>');
+    s.should.startWith('<p>');
+    s.should.endWith('</p>');
 
   });
 

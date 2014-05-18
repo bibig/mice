@@ -9,6 +9,7 @@ exports.sentences  = sentences;
 exports.paragraph  = paragraph;
 exports.paragraphs = paragraphs;
 
+var rander = require('rander');
 var utils  = require('./utils');
 
 // most common useful chinese
@@ -27,7 +28,7 @@ function zi (n) {
   n = n || 1;
 
   do {
-    str += DICT[utils.pickup(DICT.length) - 1];
+    str += DICT[rander.dice(DICT.length - 1)];
   } while ( --n > 0);
 
   return str;
@@ -49,7 +50,7 @@ function word (n, pure) {
     100 : ''
   };
   var punc;
-  var str = zi( n || utils.between(2, 5) );
+  var str = zi( n || rander.between(2, 5) );
 
   if ( ! pure) {
     punc = utils.pickup_by_probability(puncs);
@@ -102,10 +103,10 @@ function sentence (n) {
     100: ', '
   };
   var parts = [];
-  n = n || utils.pickup(3);
+  n = n || rander.between(1, 3);
 
   do {
-    parts.push(words(utils.between(2, 6)));
+    parts.push(words(rander.between(2, 6)));
   } while (--n > 0);
 
   // console.log(parts);
@@ -144,7 +145,7 @@ function sentences (n, glue) {
  * @return {string}
  */
 function paragraph (n, glue) {
-  return sentences(n || utils.between(3, 10), glue || ' ');
+  return sentences(n || rander.between(3, 10), glue || ' ');
 }
 
 /**
